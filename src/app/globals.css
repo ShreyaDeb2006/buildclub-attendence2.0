@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f0f4ff;
+  --color-brand-100: #e0e8ff;
+  --color-brand-500: #4f5dff;
+  --color-brand-600: #3b47e6;
+  --color-brand-700: #2d38cc;
+
+  --color-surface: #ffffff;
+  --color-surface-dim: #f7f8fa;
+  --color-surface-bright: #eef0f4;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Minimal animations — not overdone */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.35s ease-out forwards; }
+
+@keyframes scan-line {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+.scan-overlay::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(79,93,255,0.6), transparent);
+  animation: scan-line 2.5s linear infinite;
+}
+
+video { transform: scaleX(-1); }
+
+/* Status dot blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.blink { animation: blink 1.4s ease-in-out infinite; }
